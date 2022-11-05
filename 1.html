@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remainder</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    
+
+</head>
+<body>
+    
+<div class="container register">
+            <div class="row">
+                <div class="col-md-12">
+                        <div class="tab-pane fade show active text-align form-new" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <h3 class="register-heading">Add a new Friend!!!</h3>
+                            <div class="row register-form">
+                                <div class="col-md-12">
+                                    <form method="post" autocomplete="off" name="google-sheet">
+                                        <div class="form-group">
+                                            <input type="text" name="Name" class="form-control" placeholder="Name *" value="" required=""/>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="date" name="Date" class="form-control" placeholder="Birthday Date *" value="" required=""/>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="Message" class="form-control" placeholder="Anything to say in special" value="" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="reset" name="reset" class="btnreset btn-block" value="Reset" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" name="submit" class="btnSubmit btn-block" value="Submit" />
+                                        </div>
+                                        
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+          
+          <script>
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyY-Bh88pjSTEJll2x1DeNToFse5UTa7dPxxBsP7w9J_xT4VNze0MYSTsEayUZ5DkKU/exec'
+            const form = document.forms['google-sheet']
+            function preventFormSubmit(){
+                var forms=document.querySelectorAll('form');
+                for(var i=0;i<forms.length;i++){
+                    forms[i].addEventListener('submit',function(event){
+                        event.preventDefault();
+                    });
+                }
+            }
+            window.addEventListener('load',preventFormSubmit);
+          
+            form.addEventListener('submit', e => {
+              e.preventDefault()
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => alert("New Remainder Added!!!!!"))
+                .catch(error => console.error('Error!', error.message))
+            })
+          </script>
+          
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
+</html>
